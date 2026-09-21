@@ -49,7 +49,16 @@ class Questions {
 
     // HW 
     public static void printMazePaths(int sr, int sc, int dr, int dc, String psf){
-
+        if(sr > dr || sc > dc){
+            return;
+        }
+        if(sr == dr && sc == dc){
+            System.out.println(psf);
+            return;
+        }
+        printMazePaths(sr,sc+1,dr,dc,psf+"h");
+        printMazePaths(sr+1,sc,dr,dc,psf+"v");
+        printMazePaths(sr+1,sc+1,dr,dc,psf+"d");
     }
 
     // All maze paths with horizontal, vertical and diagonal moves with infinite jumps allowed
