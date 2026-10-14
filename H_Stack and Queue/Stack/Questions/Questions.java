@@ -428,22 +428,15 @@ class Questions {
     // Leetcode 239
     public int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;
-
-        int[] ngr = new int[n];
         Stack<Integer> st = new Stack<>();
-
-        for(int i=0; i<n; i++){
-            while(st.size() > 0 && nums[st.peek()] < nums[i]){
-                ngr[st.pop()] = i;
+        int[] nge = new int[n];
+        Arrays.fill(nge, n);
+        for(int i=0;i<n;i++){
+            while(st.size()>0 && nums[st.peek()]<nums[i]){
+                nge[st.pop()] = i;
             }
-
             st.push(i);
         }
-
-        while(st.size() > 0){
-            ngr[st.pop()] = n;
-        }
-
         int[] ans = new int[n-k+1];
         int answerIdx = 0;
 
@@ -452,8 +445,8 @@ class Questions {
                 answerIdx = idx;
             }
 
-            while(ngr[answerIdx] < idx + k){
-                answerIdx = ngr[answerIdx];
+            while(nge[answerIdx] < idx + k){
+                answerIdx = nge[answerIdx];
             }
 
             ans[idx] = nums[answerIdx];
