@@ -9,15 +9,16 @@ class Questions {
 
             if(ch == ')'){
                 // if "(" is on top -> we have duplicate brackets
+                if(st.size()==0) return false;
                 if(st.peek() == '('){
                     return true;
                 }
 
                 // pop everything till '('
-                while(st.peek() != '('){
+                while(st.size()>0 && st.peek() != '('){
                     st.pop();
                 }
-                st.pop(); // popping '('
+                if(st.size()>0) st.pop(); // popping '('
             } else {
                 st.push(ch);
             }
@@ -947,43 +948,6 @@ class Questions {
         return totalWater;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
